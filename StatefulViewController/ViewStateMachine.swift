@@ -176,12 +176,10 @@ public class ViewStateMachine {
             newView.translatesAutoresizingMaskIntoConstraints = false
             containerView.addSubview(newView)
 
-            let metrics = ["top": insets.top, "bottom": insets.bottom, "left": insets.left, "right": insets.right]
-            let views = ["view": newView]
-            let hConstraints = NSLayoutConstraint.constraints(withVisualFormat: "|-left-[view]-right-|", options: [], metrics: metrics, views: views)
-            let vConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-top-[view]-bottom-|", options: [], metrics: metrics, views: views)
-            containerView.addConstraints(hConstraints)
-            containerView.addConstraints(vConstraints)
+            let hConstraints = NSLayoutConstraint(item: newView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0)
+            let vConstraints = NSLayoutConstraint(item: newView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: 0)
+            self.view.addConstraint(hConstraints)
+            self.view.addConstraint(vConstraints)
 		}
 
 		let animations: () -> () = {
